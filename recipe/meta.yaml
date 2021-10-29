@@ -9,7 +9,7 @@ source:
   sha256: 8e36605144409df979cab43d835002f63988f3dc94d5d3537c12796db90e38c8
 
 build:
-  number: 2
+  number: 3
   run_exports:
     # forward compatible: https://abi-laboratory.pro/tracker/timeline/libxslt/
     - {{ pin_subpackage('libxslt') }}
