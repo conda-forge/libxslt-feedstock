@@ -23,7 +23,10 @@ requirements:
     - make
   host:
     - icu  # [not win]
+    - libiconv
     - libxml2
+    - libzlib
+    - xz
 
 test:
   commands:
