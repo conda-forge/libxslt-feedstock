@@ -4,10 +4,18 @@ channel_sources:
 - conda-forge
 channel_targets:
 - conda-forge main
+libiconv:
+- '1.16'
 libxml2:
 - '2.9'
 pin_run_as_build:
+  libiconv:
+    max_pin: x.x
   libxml2:
+    max_pin: x.x
+  xz:
     max_pin: x.x
 target_platform:
 - win-64
+xz:
+- '5.2'

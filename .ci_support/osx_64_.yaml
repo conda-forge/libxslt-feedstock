@@ -3,19 +3,27 @@ MACOSX_DEPLOYMENT_TARGET:
 c_compiler:
 - clang
 c_compiler_version:
-- '11'
+- '12'
 channel_sources:
 - conda-forge
 channel_targets:
 - conda-forge main
 icu:
-- '69'
+- '70'
+libiconv:
+- '1.16'
 libxml2:
 - '2.9'
 macos_machine:
 - x86_64-apple-darwin13.4.0
 pin_run_as_build:
+  libiconv:
+    max_pin: x.x
   libxml2:
+    max_pin: x.x
+  xz:
     max_pin: x.x
 target_platform:
 - osx-64
+xz:
+- '5.2'
