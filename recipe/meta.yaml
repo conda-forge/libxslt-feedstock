@@ -15,11 +15,13 @@ build:
   run_exports:
     # forward compatible: https://abi-laboratory.pro/tracker/timeline/libxslt/
     - {{ pin_subpackage('libxslt') }}
+  # ignore_run_exports:
+  #   - icu  # [osx]
 
 requirements:
   build:
-    - gnuconfig  # [unix]
     - {{ compiler('c') }}
+    - gnuconfig  # [unix]
     - make
   host:
     - icu  # [not win]
@@ -33,7 +35,7 @@ test:
     - xsltproc --version
 
 about:
-  home: http://xmlsoft.org/XSLT/
+  home: https://gitlab.gnome.org/GNOME/libxslt
   license: MIT
   license_file: COPYING
   summary: The XSLT C library developed for the GNOME project
@@ -43,7 +45,8 @@ about:
     Libxslt is based on libxml2 the XML C library developed for the GNOME project.
     It also implements most of the EXSLT set of processor-portable extensions functions
     and some of Saxon's evaluate and expressions extensions."
-  doc_url: http://xmlsoft.org/XSLT/
+  doc_url: https://gitlab.gnome.org/GNOME/libxslt/-/wikis
+  dev_url: https://gitlab.gnome.org/GNOME/libxslt
   doc_source_url: https://github.com/GNOME/libxslt/tree/master/doc
 
 extra:
