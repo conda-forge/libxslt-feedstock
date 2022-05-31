@@ -1,7 +1,7 @@
 About libxslt
 =============
 
-Home: http://xmlsoft.org/XSLT/
+Home: https://gitlab.gnome.org/GNOME/libxslt
 
 Package license: MIT
 
@@ -9,7 +9,9 @@ Feedstock license: [BSD-3-Clause](https://github.com/conda-forge/libxslt-feedsto
 
 Summary: The XSLT C library developed for the GNOME project
 
-Documentation: http://xmlsoft.org/XSLT/
+Development: https://gitlab.gnome.org/GNOME/libxslt
+
+Documentation: https://gitlab.gnome.org/GNOME/libxslt/-/wikis
 
 "Libxslt is the XSLT C library developed for the GNOME project.
 XSLT itself is a an XML language to define transformation for XML.
