@@ -11,7 +11,7 @@ source:
     - 0002-win-profiler-config.patch
 
 build:
-  number: 0
+  number: 1
   run_exports:
     # forward compatible: https://abi-laboratory.pro/tracker/timeline/libxslt/
     - {{ pin_subpackage('libxslt') }}
