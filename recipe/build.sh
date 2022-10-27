@@ -2,15 +2,16 @@
 # Get an updated config.sub and config.guess
 cp $BUILD_PREFIX/share/gnuconfig/config.* .
 
-sed -i.bak -e 's/-llzma //g' -e 's/-lz //g' $PREFIX/bin/xml2-config
-
-# It looks like an missing symbol of libxml2 on osx-arm64
+# osx-64 cross-compile seems to have trouble to get libxml2 info via pkg-config
 if [[ ${target_platform} =~ .*arm64.* ]]; then
-    LDFLAGS="${LDFLAGS} -lxml2"
+    LIBXML_CFLAGS="$( pkg-config --cflags libxml-2.0 )"
+    LIBXML_LIBS="$( pkg-config --libs libxml-2.0 )"
+    export LIBXML_CFLAGS LIBXML_LIBS
 fi
 
 ./configure --prefix=$PREFIX \
             --with-libxml-prefix=$PREFIX \
+            --enable-static=no \
             --without-python
 
 make -j${CPU_COUNT} ${VERBOSE_AT}

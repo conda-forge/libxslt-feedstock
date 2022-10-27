@@ -4,11 +4,7 @@ channel_sources:
 - conda-forge
 channel_targets:
 - conda-forge main
-libiconv:
-- '1'
 libxml2:
 - '2.10'
 target_platform:
 - win-64
-xz:
-- '5'
