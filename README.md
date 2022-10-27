@@ -208,6 +208,7 @@ In order to produce a uniquely identifiable distribution:
 Feedstock Maintainers
 =====================
 
+* [@mbargull](https://github.com/mbargull/)
 * [@ocefpaf](https://github.com/ocefpaf/)
 * [@scopatz](https://github.com/scopatz/)
 
