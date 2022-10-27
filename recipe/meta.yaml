@@ -8,10 +8,11 @@ source:
   url: https://download.gnome.org/sources/libxslt/{{ version[0:3] }}/libxslt-{{ version }}.tar.xz
   sha256: 8247f33e9a872c6ac859aa45018bc4c4d00b97e2feac9eebc10c93ce1f34dd79
   patches:
+    - 0001-Make-and-install-a-pkg-config-file-on-Windows.patch
     - 0002-win-profiler-config.patch
 
 build:
-  number: 0
+  number: 1
   run_exports:
     # forward compatible: https://abi-laboratory.pro/tracker/timeline/libxslt/
     - {{ pin_subpackage('libxslt') }}
@@ -23,6 +24,7 @@ requirements:
     - {{ compiler('c') }}
     - gnuconfig  # [unix]
     - make
+    - pkg-config
   host:
     - icu  # [not win]
     - libiconv
@@ -31,8 +33,12 @@ requirements:
     - xz
 
 test:
+  requires:
+    - pkg-config
   commands:
     - xsltproc --version
+    - pkg-config --cflags libxslt libexslt
+    - pkg-config --libs libxslt libexslt
 
 about:
   home: https://gitlab.gnome.org/GNOME/libxslt
