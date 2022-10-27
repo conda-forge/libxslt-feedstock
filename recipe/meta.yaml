@@ -24,6 +24,7 @@ requirements:
     - {{ compiler('c') }}
     - gnuconfig  # [unix]
     - make
+    - pkg-config
   host:
     - icu  # [not win]
     - libiconv
