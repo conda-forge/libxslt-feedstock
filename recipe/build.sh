@@ -11,6 +11,7 @@ fi
 
 ./configure --prefix=$PREFIX \
             --with-libxml-prefix=$PREFIX \
+            --enable-static=no \
             --without-python
 
 make -j${CPU_COUNT} ${VERBOSE_AT}
