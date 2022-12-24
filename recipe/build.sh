@@ -23,3 +23,8 @@ make install
 
 # We can remove this when we start using the new conda-build.
 find $PREFIX -name '*.la' -delete
+
+for f in "activate" "deactivate"; do
+    mkdir -p "${PREFIX}/etc/conda/${f}.d"
+    cp "${RECIPE_DIR}/${f}.sh" "${PREFIX}/etc/conda/${f}.d/${PKG_NAME}_${f}.sh"
+done
