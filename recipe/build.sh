@@ -1,9 +1,7 @@
 #!/bin/bash
-# Get an updated config.sub and config.guess
-cp $BUILD_PREFIX/share/gnuconfig/config.* .
 
-# osx-64 cross-compile seems to have trouble to get libxml2 info via pkg-config
-if [[ ${target_platform} =~ .*arm64.* ]]; then
+# osx-64 seems to have trouble to get libxml2 info via pkg-config
+if [[ ${target_platform} =~ osx.* ]]; then
     LIBXML_CFLAGS="$( pkg-config --cflags libxml-2.0 )"
     LIBXML_LIBS="$( pkg-config --libs libxml-2.0 )"
     export LIBXML_CFLAGS LIBXML_LIBS
@@ -19,7 +17,3 @@ if [[ "${CONDA_BUILD_CROSS_COMPILATION:-}" != "1" || "${CROSSCOMPILING_EMULATOR}
 make check
 fi
 make install
-
-
-# We can remove this when we start using the new conda-build.
-find $PREFIX -name '*.la' -delete
