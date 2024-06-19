@@ -1,4 +1,4 @@
-{% set version = "1.1.39" %}
+{% set version = "1.1.41" %}
 
 package:
   name: libxslt
@@ -6,7 +6,7 @@ package:
 
 source:
   url: https://download.gnome.org/sources/libxslt/{{ version[0:3] }}/libxslt-{{ version }}.tar.xz
-  sha256: 2a20ad621148339b0759c4d4e96719362dee64c9a096dbba625ba053846349f0
+  sha256: 3ad392af91115b7740f7b50d228cc1c5fc13afc1da7f16cb0213917a37f71bda
   patches:
     - 0001-Make-and-install-a-pkg-config-file-on-Windows.patch
     - 0002-win-profiler-config.patch
@@ -20,6 +20,7 @@ build:
 requirements:
   build:
     - {{ compiler('c') }}
+    - {{ stdlib("c") }}
     - gnuconfig  # [unix]
     - make
     - pkg-config
