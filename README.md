@@ -15,7 +15,7 @@ Documentation: https://gitlab.gnome.org/GNOME/libxslt/-/wikis
 
 "Libxslt is the XSLT C library developed for the GNOME project.
 XSLT itself is a an XML language to define transformation for XML.
-Libxslt is based on libxml2 the XML C library developed for the GNOME project.
+Libxslt is based on libxml2-devel the XML C library developed for the GNOME project.
 It also implements most of the EXSLT set of processor-portable extensions functions
 and some of Saxon's evaluate and expressions extensions."
 
@@ -211,4 +211,5 @@ Feedstock Maintainers
 * [@mbargull](https://github.com/mbargull/)
 * [@ocefpaf](https://github.com/ocefpaf/)
 * [@scopatz](https://github.com/scopatz/)
+* [@zklaus](https://github.com/zklaus/)
 
