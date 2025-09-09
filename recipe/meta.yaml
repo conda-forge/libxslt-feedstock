@@ -30,6 +30,7 @@ requirements:
 test:
   requires:
     - pkg-config
+    - libxml2-devel
   commands:
     - xsltproc --version
     - pkg-config --cflags libxslt libexslt
