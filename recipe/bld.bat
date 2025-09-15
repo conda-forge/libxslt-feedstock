@@ -8,8 +8,6 @@ if "%VS_MAJOR%" == "9" (
 :: N.B.: We may at some point want to try another build system that supports
 ::       pkg-config out of the box.
 set "PKG_CONFIG_PATH=%LIBRARY_LIB%\pkgconfig;%LIBRARY_PREFIX%\share\pkgconfig"
-echo "%PKG_CONFIG_PATH%"
-dir "%LIBRARY_LIB%\pkgconfig"
 for /F "usebackq delims=" %%f in (`pkg-config --cflags-only-I libxml-2.0`) do set "libxml2_include=%%f"
 set "libxml2_include=%libxml2_include: -I=;%"
 set "libxml2_include=%libxml2_include:-I=;%"
