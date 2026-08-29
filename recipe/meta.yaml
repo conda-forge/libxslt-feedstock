@@ -22,19 +22,34 @@ requirements:
     - {{ compiler('c') }}
     - {{ stdlib("c") }}
     - gnuconfig  # [unix]
-    - make
-    - pkg-config
+    # The Windows build uses nmake, not GNU make.  Keep the existing tools on
+    # established targets, but do not make the new Windows ARM64 build wait on
+    # packages that its build script does not need.
+    - make  # [target_platform != "win-arm64"]
+    - pkg-config  # [target_platform != "win-arm64"]
   host:
     - libxml2-devel
 
 test:
   requires:
-    - pkg-config
+    - pkg-config  # [target_platform != "win-arm64"]
+    - {{ compiler('c') }}  # [target_platform == "win-arm64"]
     - libxml2-devel
+  files:
+    - test.c  # [target_platform == "win-arm64"]
   commands:
     - xsltproc --version
-    - pkg-config --cflags libxslt libexslt
-    - pkg-config --libs libxslt libexslt
+    - pkg-config --cflags libxslt libexslt  # [target_platform != "win-arm64"]
+    - pkg-config --libs libxslt libexslt  # [target_platform != "win-arm64"]
+    - if not exist %LIBRARY_INC%\libxslt\xslt.h exit 1  # [target_platform == "win-arm64"]
+    - if not exist %LIBRARY_LIB%\libxslt.lib exit 1  # [target_platform == "win-arm64"]
+    - if not exist %LIBRARY_LIB%\libexslt.lib exit 1  # [target_platform == "win-arm64"]
+    - if not exist %LIBRARY_LIB%\pkgconfig\libxslt.pc exit 1  # [target_platform == "win-arm64"]
+    - if not exist %LIBRARY_LIB%\pkgconfig\libexslt.pc exit 1  # [target_platform == "win-arm64"]
+    - call %CC% /nologo /I"%LIBRARY_INC%" /I"%LIBRARY_INC%\libxml2" test.c /link /LIBPATH:"%LIBRARY_LIB%" libxslt.lib /OUT:test.exe  # [target_platform == "win-arm64"]
+    - if errorlevel 1 exit 1  # [target_platform == "win-arm64"]
+    - test.exe  # [target_platform == "win-arm64"]
+    - dumpbin /headers test.exe | findstr /I /C:"AA64 machine (ARM64)"  # [target_platform == "win-arm64"]
 
 about:
   home: https://gitlab.gnome.org/GNOME/libxslt

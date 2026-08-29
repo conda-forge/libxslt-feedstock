@@ -4,13 +4,20 @@ if "%VS_MAJOR%" == "9" (
     set MANIFEST=yes
 )
 
-:: Get libxml2 include paths via pkg-config
-:: N.B.: We may at some point want to try another build system that supports
-::       pkg-config out of the box.
+:: libxml2-devel has a fixed include location on conda-forge.  Use it directly
+:: while bootstrapping Windows ARM64, where native pkg-config is not available.
+if "%target_platform%" == "win-arm64" goto direct_libxml2_include
+
 set "PKG_CONFIG_PATH=%LIBRARY_LIB%\pkgconfig;%LIBRARY_PREFIX%\share\pkgconfig"
 for /F "usebackq delims=" %%f in (`pkg-config --cflags-only-I libxml-2.0`) do set "libxml2_include=%%f"
 set "libxml2_include=%libxml2_include: -I=;%"
 set "libxml2_include=%libxml2_include:-I=;%"
+goto libxml2_include_ready
+
+:direct_libxml2_include
+set "libxml2_include=;%LIBRARY_INC%\libxml2"
+
+:libxml2_include_ready
 
 cd win32
 cscript configure.js prefix=%LIBRARY_PREFIX% include=%LIBRARY_INC%%libxml2_include% ^
