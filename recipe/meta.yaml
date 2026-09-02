@@ -1,4 +1,4 @@
-{% set version = "1.1.43" %}
+{% set version = "1.1.45" %}
 
 package:
   name: libxslt
@@ -6,13 +6,13 @@ package:
 
 source:
   url: https://download.gnome.org/sources/libxslt/{{ version[0:3] }}/libxslt-{{ version }}.tar.xz
-  sha256: 5a3d6b383ca5afc235b171118e90f5ff6aa27e9fea3303065231a6d403f0183a
+  sha256: 9acfe68419c4d06a45c550321b3212762d92f41465062ca4ea19e632ee5d216e
   patches:
     - 0001-Make-and-install-a-pkg-config-file-on-Windows.patch
     - 0002-win-profiler-config.patch
 
 build:
-  number: 1
+  number: 0
   run_exports:
     # forward compatible: https://abi-laboratory.pro/tracker/timeline/libxslt/
     - {{ pin_subpackage('libxslt') }}
