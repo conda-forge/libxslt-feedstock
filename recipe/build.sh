@@ -1,4 +1,6 @@
 #!/bin/bash
+# Get an updated config.sub and config.guess
+cp $BUILD_PREFIX/share/gnuconfig/config.* .
 
 # osx-64 seems to have trouble to get libxml2 info via pkg-config
 if [[ ${target_platform} =~ osx.* ]]; then
